@@ -168,12 +168,13 @@ class ModelReference(BaseModel, frozen=True):
     @model_validator(mode="before")
     def validate_string(cls, value):
         if isinstance(value, str):
-            chunks = value.split("+")
-            if len(chunks) == 1:
-                return {"model": value}
-            elif len(chunks) == 2:
-                return {"model": chunks[0], "lora": chunks[1]}
-            raise RuntimeError(f"Can't parse {value}")
+            return {"model": value}
+            # chunks = value.split("+")
+            # if len(chunks) == 1:
+            #     return {"model": value}
+            # elif len(chunks) == 2:
+            #     return {"model": chunks[0], "lora": chunks[1]}
+            # raise RuntimeError(f"Can't parse {value}")
         return value
 
     @model_serializer()
